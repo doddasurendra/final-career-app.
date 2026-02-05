@@ -5,22 +5,26 @@ fake = Faker()
 
 class JobService:
     def __init__(self):
-        self.platforms = ["LinkedIn", "Naukri", "Indeed"]
-        self.roles = ["Software Engineer", "Frontend Developer", "Python Developer"]
-        self.skills_pool = ["Python", "JavaScript", "SQL", "React", "AWS"]
+        # We added your requested sites here!
+        self.platforms = ["LinkedIn", "Naukri", "Internshala", "Indeed", "Glassdoor", "Wellfound"]
+        self.roles = ["Software Engineer", "Frontend Developer", "Python Developer", "Data Scientist", "AI Engineer"]
+        self.skills_pool = ["Python", "JavaScript", "SQL", "React", "AWS", "Git"]
 
-    def generate_jobs(self, count=20):
+    def generate_jobs(self, count=50):
         jobs = []
         for _ in range(count):
+            role = random.choice(self.roles)
+            platform = random.choice(self.platforms)
             jobs.append({
                 "id": fake.uuid4(),
-                "title": random.choice(self.roles),
+                "title": role,
                 "company": fake.company(),
-                "platform": random.choice(self.platforms),
-                "location": random.choice(["Remote", "Bangalore", "Mumbai"]),
-                "salary": f"₹{random.randint(5, 15)} LPA",
+                "platform": platform,
+                "location": random.choice(["Remote", "Bangalore", "Mumbai", "Pune", "Hyderabad"]),
+                "salary": f"₹{random.randint(6, 25)} LPA",
                 "requirements": random.sample(self.skills_pool, 3),
-                "description": fake.paragraph()
+                "description": f"Exciting role at {fake.company()}...",
+                "url": f"https://www.{platform.lower()}.com/jobs/{random.randint(1000, 9999)}"
             })
         return jobs
 
