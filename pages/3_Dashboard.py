@@ -8,8 +8,7 @@ from utils.sidebar_manager import render_sidebar
 try:
     with open("assets/style.css") as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-except:
-    pass
+except: pass
 
 st.title("📊 Application Dashboard")
 render_sidebar()
