@@ -1,4 +1,10 @@
 import streamlit as st
+import sys
+import os
+
+# Ensure the current directory is in the path for module imports
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
 from PIL import Image
 from utils.data_manager import load_user_data
 
